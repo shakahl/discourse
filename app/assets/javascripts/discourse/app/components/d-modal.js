@@ -70,11 +70,10 @@ export default Component.extend({
   },
 
   triggerClickOnEnter(e) {
-    // skip when in a form or a textarea element
-    if (
-      e.target.closest("form") ||
-      (document.activeElement && document.activeElement.nodeName === "TEXTAREA")
-    ) {
+    const onForm = e.target.closest("form");
+    const onTextArea =
+      document.activeElement && document.activeElement.nodeName === "TEXTAREA";
+    if ((onForm || onTextArea) && !e.ctrlKey) {
       return false;
     }
 
